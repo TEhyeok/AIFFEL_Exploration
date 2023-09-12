@@ -1,3 +1,11 @@
 # AIFFEL_Exploration
 
-This repository is for learning AIFFEL Exploration.
+회문 출력을 위해 str 자료형의 특성에 대해 공부 할수 있었고,
+str를 리스트와 비슷한 특성에 의거해 [::-1] 형태로 작성하는 부분은 
+바로 떠오르지는 않았다.
+
+이후 두개의 함수를 만들었는데 하나는 reverse_check(), 또 다른 하나는 main() 함수이다. 
+reverse_check() 함수는 회문을 판별하기 위해 만들었고, 
+main()함수는 전체 코드의 정리를 위해 만들었다. 
+
+어제 배운 노드에 있는 내용들을 총집합해서 풀수 있는 문제여서 굉장히 도움이 많이 되었던거 같다.

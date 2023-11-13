@@ -1,5 +1,5 @@
 Exploration 1 꽃 이미지 분류
-AIFFEL Campus Online Code Peer Review Templete
+AIFFEL Campus Online Code Peer Review Templete  
 코더 : 최재혁  
 리뷰어 : 송민찬  
 <aside>

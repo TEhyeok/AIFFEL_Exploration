@@ -49,21 +49,29 @@ def train(dataset, epochs, save_every):
     * 잘 작성되었다고 생각되는 부분을 근거로 첨부합니다.
 
 ```
-tada = tf.cast(generated_image[0]*127.5+127.5, tf.int32)
+# 인코더 구조
+latent_dim = 64  # 잠재 공간의 차원
 
-plt.imshow(tada)
-plt.colorbar()
-plt.show()
+encoder_inputs = Input(shape=(32, 32, 3))
+x = Conv2D(32, 3, activation='relu', strides=2, padding='same')(encoder_inputs)
+x = Conv2D(64, 3, activation='relu', strides=2, padding='same')(x)
+x = Flatten()(x)
+x = Dense(16, activation='relu')(x)
+z_mean = Dense(latent_dim)(x)
+z_log_var = Dense(latent_dim)(x)
+
+encoder = Model(encoder_inputs, [z_mean, z_log_var], name='encoder')
+encoder.summary()
 ```
 
->CIFAR_10.ipynb 파일의 대부분의 코드나 주석이 제가 작업한 코드 및 주석과 동일해서 이해가 어려운 부분은 없었습니다.
+>CIFAR_10.ipynb 파일의 대부분의 코드나 주석이 제가 작업한 코드 및 주석과 동일해서 이해가 어려운 부분은 없었습니다. Optional 파일의 VAE 모델 구조는 새로운 개념이라 새로웠고, 코드를 이해하는 것이 어려웠습니다. 특히 잠재 공간의 차원이 무엇을 의미하는지 궁금했습니다.
 
 - [ ]  **3. 에러가 난 부분을 디버깅하여 문제를 “해결한 기록을 남겼거나” ”새로운 시도 또는 추가 실험을 수행”해봤나요?**
     * 문제 원인 및 해결 과정을 잘 기록하였는지 확인 또는
     * 문제에서 요구하는 조건에 더해 추가적으로 수행한 나만의 시도, 실험이 기록되어 있는지 확인
     * 잘 작성되었다고 생각되는 부분을 근거로 첨부합니다.
         
->추가 실험이 진행된 부분이나 오류에 대한 디버깅은 없었습니다.
+>Optional 파일 참조. VAE GAN 모델 구조를 활용하여 이미지 데이터 생성을 실험하셨습니다.
 
 - [X]  **4. 회고를 잘 작성했나요?**
     * 주어진 문제를 해결하는 완성된 코드 내지 프로젝트 결과물에 대해 배운점과 아쉬운점, 느낀점 등이 상세히 기록되어 있는지 확인
@@ -76,7 +84,7 @@ plt.show()
     * 코드 중복을 최소화하고 범용적으로 사용할 수 있도록 모듈화(함수화) 했는지
     * 잘 작성되었다고 생각되는 부분을 근거로 첨부합니다.
     
->리뷰 퀘스트 진행때문에 해당 파일을 보내주셨으나, 해당 파일 외 진행형으로 작업 중이신 다른 파일이 있으시고 제출은 다른 파일로 하신다고 하셨어서 다른 파일이 다시 업로드 될 예정입니다.  
+>간결한 코드로 모델을 제작하였고, 학습 후 결과를 시각화하여 표현하였습니다. CIFAR-10 데이터셋의 이미지 데이터가 각각 GAN 모델에 의해, 즉 Optional 실험에서 추출한 결과 이미지 데이터의 경우 기존의 노드에서 학습한 GAN 모델에서 추출한 결과 이미지 데이터와는 다른 형태의 이미지 데이터로 추출되었습니다. 새롭고 흥미로운 결과라고 생각합니다.
 
 ---
 
